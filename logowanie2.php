@@ -12,7 +12,7 @@
 		header("Location: menu.php");
 		die();
 	}
-	mysql_close();
+	mysql_close(); 
 	header("Location: logowanie.php");
 	die();
 ?>
