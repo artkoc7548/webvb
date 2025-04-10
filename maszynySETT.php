@@ -3,15 +3,14 @@
 	<head>
 		<?php
 			include 'konfiguracja.php';
-			mysql_connect($bazaAdres,$bazaLogin,$basaHaslo);
-			mysql_select_db($bazaNazwa);
+		
 			$sql = "SELECT id FROM uzytkownicy WHERE login='".$_COOKIE['login']."' && haslo='".$_COOKIE['haslo']."'";
-			$rezultat = mysql_query($sql);
-			if(mysql_num_rows($rezultat) != 1) {
+			$rezultat = mysqli_query($connect,$sql);
+			if(mysqli_num_rows($rezultat) != 1) {
 				header("Location: wyloguj.php");
 				die();
 			}
-			mysql_close();
+			mysqli_close($connect);
 		?>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -48,90 +47,82 @@
 				<h1>Ustawienia maszyny:</h1>
 				<form action="maszynySETT2.php" method="get">
 				<div class="form-group">
-					<label for="lgn">Nazwa Maszyny: </label> <input type="text" name="nazwa" value="<?php echo($_GET["info"]); ?>" readonly><br>
+					<label for="lgn">Nazwa Maszyny: </label> <br>
+					<input type="text" name="nazwa" value="<?php echo($_GET["info"]); ?>" readonly><br>
 				</div>
+				
 				<div class="form-group">
-					<label for="lgn">Typ systemu (np. Ubuntu): </label> <input type="text" name="typ"><br>
+					<label for="lgn">Ilość RAM [MB]: </label>
+					<select class="form-control" id="ram">
+					<option>2048</option>
+					<option>1024</option>
+					<option>512</option>
+					<option>256</option>
+					<option>128</option>
+					<option>4096</option>		
+				  </select>
 				</div>
-				<div class="form-group">
-					<label for="lgn">Ilość RAM [MB]: </label> <input type="text" name="ram"><br>
-				</div>
-				<div class="form-group">
-					<label for="lgn">Ilość VRAM [MB]: </label> <input type="text" name="vram"><br>
-				</div>
-				<div class="form-group">
-					<label for="lgn">Ścieżka do obrazu systemu: </label> <input type="text" name="sciezka"><br>
-				</div>
+			
 				<div class="form-group">
 					<label for="lgn">Karta jeden: </label>
 					<select class="form-control" id="karta1">
+					<option>bridged "lan"</option>
+					<option>bridged "lab"</option>
+					<option>intnet "lan1"</option>
+					<option>intnet "lan2"</option>
+					<option>intnet "lan3"</option>
+					<option>nat</option>
 					<option>none</option>
 					<option>null</option>
-					<option>nat</option>
-					<option>bridged "eth0"</option>
-					<option>bridged "eth1"</option>
-					<option>intnet "siecA"</option>
-					<option>intnet "siecB"</option>
-					<option>intnet "siecC"</option>
-					<option>hostonly</option>
-					<option>vde</option>
 				  </select>
 				  <br>
 				</div>
 				<div class="form-group">
 					<label for="lgn">Karta dwa: </label>
 					<select class="form-control" id="karta2">
+					<option>bridged "lan"</option>
+					<option>bridged "lab"</option>
+					<option>intnet "lan1"</option>
+					<option>intnet "lan2"</option>
+					<option>intnet "lan3"</option>
+					<option>nat</option>
 					<option>none</option>
 					<option>null</option>
-					<option>nat</option>
-					<option>bridged "eth0"</option>
-					<option>bridged "eth1"</option>
-					<option>intnet "siecA"</option>
-					<option>intnet "siecB"</option>
-					<option>intnet "siecC"</option>
-					<option>hostonly</option>
-					<option>vde</option>
 				  </select>
 				  <br>
 				</div>
 				<div class="form-group">
 					<label for="lgn">Karta trzy: </label>
 					<select class="form-control" id="karta3">
+					<option>bridged "lan"</option>
+					<option>bridged "lab"</option>
+					<option>intnet "lan1"</option>
+					<option>intnet "lan2"</option>
+					<option>intnet "lan3"</option>
+					<option>nat</option>
 					<option>none</option>
 					<option>null</option>
-					<option>nat</option>
-					<option>bridged "eth0"</option>
-					<option>bridged "eth1"</option>
-					<option>intnet "siecA"</option>
-					<option>intnet "siecB"</option>
-					<option>intnet "siecC"</option>
-					<option>hostonly</option>
-					<option>vde</option>
 				  </select>
 				  <br>
 				</div>
 				<div class="form-group">
 					<label for="lgn">Karta cztery: </label>
 					<select class="form-control" id="karta4">
+					<option>bridged "lan"</option>
+					<option>bridged "lab"</option>
+					<option>intnet "lan1"</option>
+					<option>intnet "lan2"</option>
+					<option>intnet "lan3"</option>
+					<option>nat</option>
 					<option>none</option>
 					<option>null</option>
-					<option>nat</option>
-					<option>bridged "eth0"</option>
-					<option>bridged "eth1"</option>
-					<option>intnet "siecA"</option>
-					<option>intnet "siecB"</option>
-					<option>intnet "siecC"</option>
-					<option>hostonly</option>
-					<option>vde</option>
 				  </select>
 				  <br>
 				</div>
 				<div class="form-group">
-					<label for="lgn">Pulpit zdalny port: </label> <input type="text" name="pulpitPort"><br>
+					<label for="lgn">Pulpit zdalny port: </label><br> <input type="text" name="pulpitPort"><br>
 				</div>
-				<div class="form-group">
-					<label for="lgn">Pulpit zdalny IP: </label> <input type="text" name="pulpitIP"><br>
-				</div>
+				
 				<div class="form-group">
 					<input type="submit" value="Wykonaj" class="btn btn-success">
 					<a href="maszyny.php" class="btn btn-danger" role="button">Anuluj</a>

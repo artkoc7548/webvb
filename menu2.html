@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu rozwijane z ikoną</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="p-10 bg-gray-100 flex justify-center items-center min-h-screen">
+
+  <div class="relative inline-block text-left">
+    <button onclick="toggleMenu()" class="inline-flex justify-center w-full rounded-full border border-gray-300 shadow-sm p-2 bg-white text-gray-700 hover:bg-gray-50 focus:outline-none">
+      <i data-lucide="settings" class="h-5 w-5"></i>
+    </button>
+
+    <div id="dropdownMenu" class="hidden origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+      <div class="py-1">
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+          <i data-lucide="copy" class="w-4 h-4 mr-2"></i> Kopia
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+          <i data-lucide="trash-2" class="w-4 h-4 mr-2"></i> Usuń
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+          <i data-lucide="settings" class="w-4 h-4 mr-2"></i> Ustawienia
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+          <i data-lucide="power" class="w-4 h-4 mr-2"></i> Włącz
+        </a>
+        <a href="#" class="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+          <i data-lucide="power-off" class="w-4 h-4 mr-2"></i> Wyłącz
+        </a>
+        <a href="#" id="copy" class="flex items-center ...">
+            <i data-lucide="copy" class="w-4 h-4 mr-2"></i> Kopia
+          </a>
+          <a href="#" id="delete" class="flex items-center ...">
+            <i data-lucide="trash-2" class="w-4 h-4 mr-2"></i> Usuń
+          </a>
+          <a href="#" id="settings" class="flex items-center ...">
+            <i data-lucide="settings" class="w-4 h-4 mr-2"></i> Ustawienia
+          </a>
+          <a href="#" id="on" class="flex items-center ...">
+            <i data-lucide="power" class="w-4 h-4 mr-2"></i> Włącz
+          </a>
+          <a href="#" id="off" class="flex items-center ...">
+            <i data-lucide="power-off" class="w-4 h-4 mr-2"></i> Wyłącz
+          </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+  function toggleMenu() {
+    const menu = document.getElementById('dropdownMenu');
+    menu.classList.toggle('hidden');
+  }
+
+  window.addEventListener('click', function(e) {
+    const menu = document.getElementById('dropdownMenu');
+    const button = document.querySelector('button');
+    if (!button.contains(e.target)) {
+      menu.classList.add('hidden');
+    }
+  });
+
+  // Dodajemy akcje do przycisków:
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('copy').addEventListener('click', () => alert('Kliknięto: Kopia'));
+    document.getElementById('delete').addEventListener('click', () => alert('Kliknięto: Usuń'));
+    document.getElementById('settings').addEventListener('click', () => alert('Kliknięto: Ustawienia'));
+    document.getElementById('on').addEventListener('click', () => alert('Kliknięto: Włącz'));
+    document.getElementById('off').addEventListener('click', () => alert('Kliknięto: Wyłącz'));
+  });
+
+  </script>
+</body>
+</html>

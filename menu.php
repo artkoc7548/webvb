@@ -1,4 +1,33 @@
-<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<?php
+		session_start(); // Najpierw uruchom sesję!
+
+		// Sprawdzenie ciastek (jeśli używasz ich do auto-logowania)
+		if (!isset($_COOKIE['login']) || !isset($_COOKIE['haslo'])) {
+			header("Location: wyloguj.php");
+			die();
+		}
+		
+		// Sprawdzenie sesji (czy użytkownik jest zalogowany)
+		if (!isset($_SESSION['user'])) {
+			header("Location: wyloguj.php");
+			die();
+		}
+
+		?>
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	</head>
+	<body>
+	<div class="navbar">
+		<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		  <div class="container">
 			<div class="navbar-header">
 			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -7,15 +36,52 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			
+			  <a class="navbar-brand">Zarządzanie wirtualnymi maszynami przez stronę WWW</a>
 			</div>
 			<div class="collapse navbar-collapse">
 			  <ul class="nav navbar-nav">
-				<li class="active"><a href="index.php">Główna Strona</a></li>
-				<li><img src="img/komputer.jpg" class="img-fluid" alt="rejestracja"><a href="rejestracja.php">Rejestracja</a></li>
-				<li><img src="img/komputer.jpg" class="img-fluid" alt="logowanie"><a href="logowanie.php">Logowanie</a></li>
-				<li><img src="img/komputer.jpg" class="img-fluid" alt="administracja"><a href="administracja.php">Administracja</a></li>
+				<li class="active"><a href="menu.php">Twoje Konto</a></li>
+				<li><a href="maszyny.php">Twoje Maszyny</a></li>
+				<li><a href="ustawienia.php">Ustawienia</a></li>
+				<li><a href="wyloguj.php">Wyloguj</a></li>
 			  </ul>
 			</div>
 		  </div>
 		</div>
+	</div>
+		<div class="container">
+			<div class="jumbotron">
+				<!-- <h1>Jesteś zalogowany jako: <?php echo($_COOKIE['login']); ?> </h1></br></br>
+				<h1>Jesteś zalogowany jako: <?php echo htmlspecialchars($_COOKIE['login']); ?> </h1>
+				<p>Witaj w panelu kontrolnym twojego konta. Wybierz odpowiednią zakładkę i rozpocznij pracę. System jest gotowy do pracy i czeka na twoje polecenia.</p></br>
+				<h2>Informacje o systemie:</h2>
+				<!-- <p>Połączenie: <?php echo($_SERVER['HTTP_CONNECTION']); ?></p>
+				<p>Połączenie: <?php echo htmlspecialchars($_SERVER['HTTP_CONNECTION'] ?? 'brak danych'); ?></p>
+				<p>Data: <?php echo(date('m/d/Y', time())); ?></p>
+				<p>Godzina: <?php echo(date('H:i:s', time())); ?></p>
+				<p>Adres: <?php echo($_SERVER['SERVER_ADDR']); ?></p>
+				<p>Port: <?php echo($_SERVER['SERVER_PORT']); ?></p>
+				</br><a href="menu.php" class="btn btn-warning" role="button">Przeładuj dane...</a>
+			 -->
+	<h1>Jesteś zalogowany jako: <?php echo htmlspecialchars($_COOKIE['login']); ?> </h1><br><br>
+    <p>Witaj w panelu kontrolnym twojego konta. Wybierz odpowiednią zakładkę i rozpocznij pracę. System jest gotowy do pracy i czeka na twoje polecenia.</p><br>
+    
+    <h2>Informacje o systemie:</h2>
+    <p>Połączenie: <?php echo htmlspecialchars($_SERVER['HTTP_CONNECTION'] ?? 'brak danych'); ?></p>
+    <p>Data: <?php echo date('d.m.Y'); ?></p>
+    <p>Godzina: <?php echo date('H:i:s'); ?></p>
+    <p>Adres serwera: <?php echo $_SERVER['SERVER_ADDR']; ?></p>
+    <p>Port: <?php echo $_SERVER['SERVER_PORT']; ?></p>
+
+    <br><a href="menu.php" class="btn btn-warning" role="button">Przeładuj dane...</a>
+
+			
+			</div>
+		</div>
+		<div class="container">
+			<div class="span4">
+				© 2015 Jakub Biliński - All Rights Reserved
+			</div>
+		</div>
+	</body>
+</html>

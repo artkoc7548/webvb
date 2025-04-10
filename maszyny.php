@@ -7,12 +7,15 @@
 				header("Location: wyloguj.php");
 				die();
 			}
-			mysql_connect($bazaAdres,$bazaLogin,$basaHaslo);
-			mysql_select_db($bazaNazwa);
-			$sql = "SELECT id FROM uzytkownicy WHERE login='".$_COOKIE['login']."' && haslo='".$_COOKIE['haslo']."'";
-			$rezultat = mysql_query($sql);
-			$idUsera = mysql_result($rezultat,0);
-			mysql_close();
+			
+			$sql = "SELECT id FROM ab_uzytkownicy WHERE login='".$_COOKIE['login']."' && haslo='".$_COOKIE['haslo']."'";
+			
+			$rezultat = mysqli_query($connect,$sql);
+			while($data = mysqli_fetch_assoc($rezultat)) {
+				$idUsera = $data['id'];
+			}
+
+			mysqli_close($connect);
 		?>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -56,27 +59,29 @@
 				</tr>
 				<?php
 					include 'konfiguracja.php';
-					mysql_connect($bazaAdres,$bazaLogin,$basaHaslo);
-					mysql_select_db($bazaNazwa);
-					$lista = mysql_query("SELECT * FROM maszyny WHERE idUzytkownika=".$idUsera) or die();
-					while($linia = mysql_fetch_assoc($lista)) {
+					$connect = mysqli_connect('artkoc7548.mysql.dhosting.pl', 'xeid7h_koczwara', '_tyS7%Zi6K', 'che4zu_koczwara');
+					
+					$sqlm = "SELECT id, nazwamaszyny FROM ab_maszyny WHERE iduzytkownika=$idUsera";
+					$lista = mysqli_query($connect,$sqlm) or die();
+
+					while($linia = mysqli_fetch_assoc($lista)) {
 						echo('<tr>');
 						echo('<td>'.$linia["id"].'</td>');
-						echo('<td>'.$linia["nazwaMaszyny"].'</td>');
-						if (exec("VBoxManage list runningvms | grep -w '".$linia["nazwaMaszyny"]."'") == NULL) {
+						echo('<td>'.$linia["nazwamaszyny"].'</td>');
+					//	if (exec("VBoxManage list runningvms | grep -w '".$linia["nazwamaszyny"]."'") == NULL) {
 							echo('<td><font color="red">WYŁĄCZONY</font></td>');
-						} else {
-							echo('<td><font color="green">URUCHOMIONY</font></td>');
-						}
+					//	} else {
+					//		echo('<td><font color="green">URUCHOMIONY</font></td>');
+					//	}
 						echo('<td>
-						<a href="maszynyON.php?info='.$linia["nazwaMaszyny"].'" class="btn btn-xs btn-success">Włącz</a>
-						<a href="maszynyRESTART.php?info='.$linia["nazwaMaszyny"].'" class="btn btn-xs btn-info">Restart</a>
-						<a href="maszynyOFF.php?info='.$linia["nazwaMaszyny"].'" class="btn btn-xs btn-warning">Wyłacz</a>
-						<a href="maszynySETT.php?info='.$linia["nazwaMaszyny"].'" class="btn btn-xs btn-primary">Ustawienia</a>
+						<a href="maszynyON.php?info='.$linia["nazwamaszyny"].'" class="btn btn-xs btn-success">Włącz</a>
+						<a href="maszynyRESTART.php?info='.$linia["nazwamaszyny"].'" class="btn btn-xs btn-info">Restart</a>
+						<a href="maszynyOFF.php?info='.$linia["nazwamaszyny"].'" class="btn btn-xs btn-warning">Wyłacz</a>
+						<a href="maszynySETT.php?info='.$linia["nazwamaszyny"].'" class="btn btn-xs btn-primary">Ustawienia</a>
 						</td>');
 						echo('</tr>');
 					}
-					mysql_close();
+					mysqli_close($connect);
 				?>
 				</table>
 			</div>

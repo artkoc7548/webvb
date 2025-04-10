@@ -2,16 +2,20 @@
 	include 'konfiguracja.php';
 	$hasloStare = hash("sha256",$_GET["stare"]);
 	$hasloNowe = hash("sha256",$_GET["nowe"]);
-	mysql_connect($bazaAdres,$bazaLogin,$basaHaslo);
-	mysql_select_db($bazaNazwa);
-	$sql = "SELECT id FROM uzytkownicy WHERE login='".$_COOKIE['login']."' && haslo='".$hasloNowe."'";
-	$rezultat = mysql_query($sql);
-	if(mysql_num_rows($rezultat) != 1) {
+	
+	$connect = mysqli_connect('artkoc7548.mysql.dhosting.pl', 'xeid7h_koczwara', '_tyS7%Zi6K', 'che4zu_koczwara');
+	
+
+	$sql = "SELECT id FROM ab_uzytkownicy WHERE login='".$_COOKIE['login']."' && haslo='".$hasloNowe."'";
+	
+	$rezultat = mysqli_query($connect,$sql);
+
+	if(mysqli_num_rows($rezultat) != 1) {
 		header("Location: ustawienia.php");
 		die();
 	}
-	mysql_query("UPDATE uzytkownicy SET haslo='".$hasloNowe."' WHERE login='".$_COOKIE['login']."' && haslo='".$hasloStare."'");
-	mysql_close();
+	mysqli_query($connect, "UPDATE ab_uzytkownicy SET haslo='".$hasloNowe."' WHERE login='".$_COOKIE['login']."' && haslo='".$hasloStare."'");
+	mysqli_close($connect);
 	header("Location: wyloguj.php");
 	die();
 ?>

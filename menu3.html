@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu bez JS</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="flex justify-center items-center h-screen bg-gray-100">
+
+  <!-- Kontener menu -->
+  <div class="relative group">
+    <!-- Przycisk z ikoną -->
+    <button class="p-2 rounded-full bg-white shadow hover:bg-gray-100 focus:outline-none focus:ring">
+      <i data-lucide="settings" class="w-5 h-5"></i>
+    </button>
+
+    <!-- Rozwijane menu -->
+    <div class="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-lg opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-100 group-focus-within:opacity-100 group-focus-within:scale-100 transition-all duration-200 pointer-events-none group-hover:pointer-events-auto">
+      <ul class="py-2 text-sm text-gray-700">
+        <li><a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100"><i data-lucide="copy" class="w-4 h-4 mr-2"></i> Kopia</a></li>
+        <li><a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100"><i data-lucide="trash-2" class="w-4 h-4 mr-2"></i> Usuń</a></li>
+        <li><a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100"><i data-lucide="settings" class="w-4 h-4 mr-2"></i> Ustawienia</a></li>
+        <li><a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100"><i data-lucide="power" class="w-4 h-4 mr-2"></i> Włącz</a></li>
+        <li><a href="#" class="flex items-center px-4 py-2 hover:bg-gray-100"><i data-lucide="power-off" class="w-4 h-4 mr-2"></i> Wyłącz</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Inicjalizacja ikon -->
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>

@@ -43,87 +43,92 @@
 				<h1>Dodawanie maszyny:</h1>
 				<form action="administracja5.php" method="get">
 				<div class="form-group">
-					<label for="lgn">Nazwa Maszyny: </label> <input type="text" name="nazwa"><br>
+					<label for="lgn">Nazwa Maszyny: </label><br>
+					 <input type="text" name="nazwa"><br>
 				</div>
 				<div class="form-group">
-					<label for="lgn">Przypisany uzytkownik: </label> <input type="text" name="kto"><br>
+					<label for="lgn">Przypisany uzytkownik: <br></label> <input type="text" name="kto"><br>
 				</div>
 				<div class="form-group">
 					<label for="lgn">Rozmiar dysku [MB]: </label> <input type="text" name="dysk"><br>
 				</div>
 				<div class="form-group">
-					<label for="lgn">Typ systemu (np. Ubuntu): </label> <input type="text" name="typ"><br>
+				    <label for="lgn">Typ systemu (np. Ubuntu): </label>
+					<select class="form-control" id="typ">
+					<option>bridged "Linux"</option>
+					<option>bridged "Microsoft Windows"</option>
+					<option>intnet "BSD"</option>			
+				  </select>
 				</div>
 				<div class="form-group">
-					<label for="lgn">Ilość RAM [MB]: </label> <input type="text" name="ram"><br>
+					<label for="lgn">Ilość RAM [MB]: </label>
+					<select class="form-control" id="ram">
+					<option>2048</option>
+					<option>1024</option>
+					<option>512</option>
+					<option>256</option>
+					<option>128</option>
+					<option>4096</option>		
+				  </select>
 				</div>
+		
 				<div class="form-group">
-					<label for="lgn">Ilość VRAM [MB]: </label> <input type="text" name="vram"><br>
-				</div>
-				<div class="form-group">
-					<label for="lgn">Ścieżka do obrazu systemu: </label> <input type="text" name="sciezka"><br>
+					<label for="lgn">Ścieżka do obrazu systemu: </label><br>
+					 <input type="text" name="sciezka"><br>
 				</div>
 				<div class="form-group">
 					<label for="lgn">Karta jeden: </label>
 					<select class="form-control" id="karta1">
+					<option>bridged "lan"</option>
+					<option>bridged "lab"</option>
+					<option>intnet "lan1"</option>
+					<option>intnet "lan2"</option>
+					<option>intnet "lan3"</option>
+					<option>nat</option>
 					<option>none</option>
 					<option>null</option>
-					<option>nat</option>
-					<option>bridged "eth0"</option>
-					<option>bridged "eth1"</option>
-					<option>intnet "siecA"</option>
-					<option>intnet "siecB"</option>
-					<option>intnet "siecC"</option>
-					<option>hostonly</option>
-					<option>vde</option>
 				  </select>
 				  <br>
 				</div>
 				<div class="form-group">
 					<label for="lgn">Karta dwa (none/null/nat/bridged/intnet/hostonly/vde): </label>
 					<select class="form-control" id="karta2">
-					<option>none</option>
-					<option>null</option>
+					<option>bridged "lan"</option>
+					<option>bridged "lab"</option>
+					<option>intnet "lan1"</option>
+					<option>intnet "lan2"</option>
+					<option>intnet "lan3"</option>
 					<option>nat</option>
-					<option>bridged "eth0"</option>
-					<option>bridged "eth1"</option>
-					<option>intnet "siecA"</option>
-					<option>intnet "siecB"</option>
-					<option>intnet "siecC"</option>
-					<option>hostonly</option>
-					<option>vde</option>
+					<option>none</option>
+					<option>null</option>>
 				  </select>
 				  <br>
 				</div>
 				<div class="form-group">
 					<label for="lgn">Karta trzy (none/null/nat/bridged/intnet/hostonly/vde): </label>
 					<select class="form-control" id="karta3">
+					<option>bridged "lan"</option>
+					<option>bridged "lab"</option>
+					<option>intnet "lan1"</option>
+					<option>intnet "lan2"</option>
+					<option>intnet "lan3"</option>
+					<option>nat</option>
 					<option>none</option>
 					<option>null</option>
-					<option>nat</option>
-					<option>bridged "eth0"</option>
-					<option>bridged "eth1"</option>
-					<option>intnet "siecA"</option>
-					<option>intnet "siecB"</option>
-					<option>intnet "siecC"</option>
-					<option>hostonly</option>
-					<option>vde</option>
 				  </select>
 				  <br>
 				</div>
 				<div class="form-group">
 					<label for="lgn">Karta cztery (none/null/nat/bridged/intnet/hostonly/vde): </label>
 					<select class="form-control" id="karta4">
+					<option>bridged "lan"</option>
+					<option>bridged "lab"</option>
+					<option>intnet "lan1"</option>
+					<option>intnet "lan2"</option>
+					<option>intnet "lan3"</option>
+					<option>nat</option>
 					<option>none</option>
 					<option>null</option>
-					<option>nat</option>
-					<option>bridged "eth0"</option>
-					<option>bridged "eth1"</option>
-					<option>intnet "siecA"</option>
-					<option>intnet "siecB"</option>
-					<option>intnet "siecC"</option>
-					<option>hostonly</option>
-					<option>vde</option>
 				  </select>
 				  <br>
 				</div>

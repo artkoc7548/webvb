@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<?php
+<?php
 			include 'konfiguracja.php';
 			if(!isset($_COOKIE['hasloROOT']) ||  $_COOKIE['hasloROOT'] != $prawidloweHaslo ) {
 				header("Location: wyloguj.php");
 				die();
 			}
 		?>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">

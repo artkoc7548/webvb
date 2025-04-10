@@ -1,13 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<?php
+<?php
 			include 'konfiguracja.php';
-			if(!isset($_COOKIE['hasloROOT']) ||  $_COOKIE['hasloROOT'] != $prawidloweHaslo ) {
+
+		if(!isset($_COOKIE['hasloROOT']) ||  $_COOKIE['hasloROOT'] != $prawidloweHaslo ) {
 				header("Location: wyloguj.php");
 				die();
 			}
+
+	// $prawidloweHaslo = "1234";
+
+	// if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	// 	$haslo = $_POST['haslo'];
+	
+	// 	if ($haslo === $prawidloweHaslo) {
+	// 		// Ustaw ciasteczko ważne przez 1 godzinę
+	// 		setcookie('hasloROOT', $prawidloweHaslo, time() + 3600, "/", "", false, true);
+	// 		header("Location: index.php");
+	// 		exit();
+	// 	} else {
+	// 		echo "Błędne hasło. <a href='administracja.php'>Spróbuj ponownie</a>";
+	// 	}
+	// } else {
+	// 	header("Location: index.php");
+	// 	exit();
+	// }
+
+
 		?>
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -49,30 +72,29 @@
 					<th>Akcja</th>
 				</tr>
 				<?php
-					include 'konfiguracja.php';
-					mysql_connect($bazaAdres,$bazaLogin,$basaHaslo);
-					mysql_select_db($bazaNazwa);
-					$lista = mysql_query("SELECT * FROM maszyny") or die();
-					while($linia = mysql_fetch_assoc($lista)) {
+					$connect = mysqli_connect('artkoc7548.mysql.dhosting.pl', 'xeid7h_koczwara', '_tyS7%Zi6K', 'che4zu_koczwara');
+					$sqla3="SELECT id, nazwamaszyny FROM ab_maszyny";
+					$lista = mysqli_query($connect, $sqla3) or die();
+					while($linia = mysqli_fetch_assoc($lista)) {
 						echo('<tr>');
 						echo('<td>'.$linia["id"].'</td>');
-						echo('<td>'.$linia["nazwaMaszyny"].'</td>');
-						if (exec("VBoxManage list runningvms | grep -w '".$linia["nazwaMaszyny"]."'") == NULL) {
-							echo('<td><font color="red">WYŁĄCZONY</font></td>');
-						} else {
-							echo('<td><font color="green">URUCHOMIONY</font></td>');
-						}
+						echo('<td>'.$linia["nazwamaszyny"].'</td>');
+						//if (exec("VBoxManage list runningvms | grep -w '".$linia["nazwaMaszyny"]."'") == NULL) {
+						//	echo('<td><font color="red">WYŁĄCZONY</font></td>');
+					//	} else {
+					//		echo('<td><font color="green">URUCHOMIONY</font></td>');
+					//	}
 						echo('<td>
-						<a href="administracjaON.php?info='.$linia["nazwaMaszyny"].'" class="btn btn-xs btn-success">Włącz</a>
-						<a href="administracjaRESTART.php?info='.$linia["nazwaMaszyny"].'" class="btn btn-xs btn-info">Restart</a>
-						<a href="administracjaOFF.php?info='.$linia["nazwaMaszyny"].'" class="btn btn-xs btn-warning">Wyłacz</a>
-						<a href="administracjaKlonuj.php?info='.$linia["nazwaMaszyny"].'" class="btn btn-xs btn-info">Klonuj</a>
-						<a href="administracjaSETT.php?info='.$linia["nazwaMaszyny"].'" class="btn btn-xs btn-primary">Ustawienia</a>
-						<a href="administracjaDEL.php?info='.$linia["nazwaMaszyny"].'" class="btn btn-xs btn-danger">Usuń</a>
+						<a href="administracjaON.php?info='.$linia["nazwamaszyny"].'" class="btn btn-xs btn-success">Włącz</a>
+						<a href="administracjaRESTART.php?info='.$linia["nazwamaszyny"].'" class="btn btn-xs btn-info">Restart</a>
+						<a href="administracjaOFF.php?info='.$linia["nazwamaszyny"].'" class="btn btn-xs btn-warning">Wyłacz</a>
+						<a href="administracjaKlonuj.php?info='.$linia["nazwamaszyny"].'" class="btn btn-xs btn-info">Klonuj</a>
+						<a href="administracjaSETT.php?info='.$linia["nazwamaszyny"].'" class="btn btn-xs btn-primary">Ustawienia</a>
+						<a href="administracjaDEL.php?info='.$linia["nazwamaszyny"].'" class="btn btn-xs btn-danger">Usuń</a>
 						</td>');
 						echo('</tr>');
 					}
-					mysql_close();
+					mysqli_close($connect);
 				?>
 				</table>
 				</br></br>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu rozwijane z ikoną</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MKzEtjpM pluszc5qJCQ9xupjYK17KFJY6Fy9+Wt4p16zJH7Jy2P0AaEzw1K7KhDQ2d2h9yNcKRhkp13Jt4Og9Og==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .dropdown-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            min-width: 160px;
+            z-index: 1;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 12px 16px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-btn {
+            background-color: #4CAF50;
+            color: rgb(53, 219, 38);
+            padding: 10px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .dropdown-btn:hover {
+            background-color: #3e8e41;
+        }
+
+        .dropdown-btn:before {
+            content: "\f0d7";
+            font-family: "Font Awesome 6 Free";
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Menu rozwijane z ikoną</h2>
+
+    <div class="dropdown-container">
+        <button class="dropdown-btn"></button>
+        <div class="dropdown-content">
+            <a href="#">Strona główna</a>
+            <a href="#">O nas</a>
+            <a href="#">Usługi</a>
+            <a href="#">Cennik</a>
+            <a href="#">Kontakt</a>
+        </div>
+    </div>
+
+</body>
+</html>
